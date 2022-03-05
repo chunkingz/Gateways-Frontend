@@ -24,9 +24,25 @@ The service must also offer an operation for displaying information about all st
 ---
 <br>
 
-## How to use locally :bulb:
+## How to use :bulb:
 
-Clone the repo by typing the command below into your terminal.
+Run the following commands in a *split* terminal.
+
+in the first terminal...
+
+```
+git clone https://github.com/chunkingz/Gateways-Backend.git
+```
+
+```
+cd Gateways-Backend
+``` 
+
+```
+npm i
+``` 
+
+in the second terminal...
 
 ```
 git clone https://github.com/chunkingz/Gateways-Frontend.git
@@ -43,35 +59,57 @@ npm i
 ---
 <br>
 
-## Backend
+## Automated Build for Development server (in the backend directory) :zap:
 
-Clone the backend using the below command
+For an automated build, run the script below for Gulp and Webpack. 
+
 ```
-git clone https://github.com/chunkingz/Gateways-Backend.git
+npm run dev-build
 ```
 
-## Development server :sparkles:
+For a prodcution server, run the script below. 
+```
+npm start
+``` 
 
-In the frontend dir, run `ng s` for a dev server. 
 
-Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+To interact with the Endpoints directly, Open Postman and use the following
 
----
+| Verb        | Endpoint                                      | Payload                   |  Use                          |
+| ----------- | --------------------------------------------- |---------------------------|-------------------------------|
+| GET         | http://localhost:5000/gateways                | No                        |  Get all gateway devices      |
+| GET         | http://localhost:5000/gateways/<gatewayID\>    | No                       |  Get a single gateway device  |
+| POST        | http://localhost:5000/gateways                | Yes (See Gateway model below)     |  Add a Gateway                |
+| PUT         | http://localhost:5000/gateways/<gatewayID\>    | Yes (See Gateway model below)    |  Update a Gateway             |
+| DEL         | http://localhost:5000/gateways/<gatewayID\>    | No                       |  Delete a Gateway             |
+| DEL         | http://localhost:5000/gateways/<gatewayID\>/peripheralDevices/<deviceID\> |  No    |  Delete a peripheral device  |
+| POST        | http://localhost:5000/gateways/<gatewayID\>/peripheralDevices/add    | Yes (See Peripheral model below) |  Add a peripheral device      |
+
 <br>
 
-## Build for production
+> Gateway model
 
-- `ng b` to build the project. The build artifacts will be stored in the `dist/` directory.
+``` typescript
+{
+    serialNumber: String,
+    deviceName: String,
+    ipv4: String,
+    peripheralDevices: Array<Object>,
+}
+```
 
-- `cp dist/* ../backend/public/`
-
-
----
 <br>
 
-## Running unit tests
+> Peripheral Devices model
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+``` typescript
+{
+    UID: number,
+    vendor: String,
+    dateCreated: Date,
+    status: EnumType,
+}
+```
 
 ---
 
