@@ -9,7 +9,8 @@ export class DataService {
   selectedGateway: IGateway | any;
   gateway: IGateway[] | any;
 
-  private _url = `http://localhost:5000/gateways`;
+  // private _url = `http://localhost:5000/gateways`;
+  private _url = `gateways`;
 
   constructor(private _http: HttpClient) { }
 

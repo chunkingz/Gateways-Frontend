@@ -11,7 +11,20 @@ The service must also offer an operation for displaying information about all st
 ---
 <br>
 
-## How to use :bulb:
+# Urls (Live Hosting) :whale:
+
+:gem: This app is hosted on Heroku [here](https://musala-gateways.herokuapp.com/)
+
+:fire: Firebase coming soon...
+
+:octocat: Github Pages coming soon...
+
+:electric_plug: The API backend [Github Repo](https://github.com/chunkingz/Gateways-Backend)
+
+---
+<br>
+
+## How to use locally :bulb:
 
 Clone the repo by typing the command below into your terminal.
 
@@ -30,16 +43,28 @@ npm i
 ---
 <br>
 
+## Backend
+
+Clone the backend using the below command
+```
+git clone https://github.com/chunkingz/Gateways-Backend.git
+```
+
 ## Development server :sparkles:
 
-Run `ng s` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+In the frontend dir, run `ng s` for a dev server. 
+
+Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ---
 <br>
 
-## Build
+## Build for production
 
-Run `ng b` to build the project. The build artifacts will be stored in the `dist/` directory.
+- `ng b` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+- `cp dist/* ../backend/public/`
+
 
 ---
 <br>
@@ -47,16 +72,6 @@ Run `ng b` to build the project. The build artifacts will be stored in the `dist
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
----
-<br>
-
-## Backend
-
-To develop locally, clone the backend using the below command
-```
-git clone https://github.com/chunkingz/Gateways-Backend.git
-```
 
 ---
 
