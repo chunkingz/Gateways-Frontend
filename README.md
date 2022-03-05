@@ -11,6 +11,22 @@ The service must also offer an operation for displaying information about all st
 ---
 <br>
 
+## Technologies used :dart:
+
+For this project I used the MEAN stack:
+
+:green_circle: [MongoDB](https://www.mongodb.com/)
+
+:purple_circle: [Expressjs](https://expressjs.com/)
+
+:red_circle: [Angular](https://angular.io/)
+
+:yellow_circle: [Nodejs](https://nodejs.org/en/)
+
+
+---
+<br>
+
 # Urls (Live Hosting) :whale:
 
 :gem: This app is hosted on Heroku [here](https://musala-gateways.herokuapp.com/)
@@ -110,6 +126,15 @@ To interact with the Endpoints directly, Open Postman and use the following
     status: EnumType,
 }
 ```
+
+---
+<br>
+
+## DB Config :file_cabinet:
+
+**Optionally**, you may import my dummy DB values into the `gateways` collection, in mongodb compass/atlas
+
+The file is located in `<backend dir>/imports/gateways.json`
 
 ---
 
