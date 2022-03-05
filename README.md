@@ -51,6 +51,13 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ---
 <br>
 
+## Backend
+
+To develop locally, clone the backend using the below command
+```
+git clone https://github.com/chunkingz/Gateways-Backend.git
+```
+
 ---
 
 :bowtie: yours truly
