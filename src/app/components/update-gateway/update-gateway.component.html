@@ -1,0 +1,133 @@
+
+<div class="container mb-5">
+
+    <main>
+        <h1 class="my-5">Update Gateway Form</h1>
+
+        <!-- Display the populated gateway form -->
+        <form [formGroup]="gatewayForm" (ngSubmit)="updateGateway()">
+
+            <div class="form-group">
+                <label for="serialNumber">Serial Number</label>
+                <input type="text" id="serialNumber" class="form-control" formControlName="serialNumber">
+                <div *ngIf="serialNumber?.pending">Checking for uniqueness...</div>
+                <div *ngIf="serialNumber?.touched && serialNumber?.invalid" class="alert alert-danger">
+                    <div *ngIf="serialNumber?.errors?.required">Serial Number is required</div>
+                    <div *ngIf="serialNumber?.errors?.uniqueSerialNumber">Serial Number must be unique.</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="deviceName">Device Name</label>
+                <input type="text" id="deviceName" class="form-control" formControlName="deviceName">
+                <div *ngIf="deviceName?.touched && deviceName?.invalid" class="alert alert-danger">
+                    Device Name is required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ipv4">IPv4</label>
+                <input type="text" id="ipv4" class="form-control" formControlName="ipv4">
+                <div *ngIf="ipv4?.touched && ipv4?.invalid" class="alert alert-danger">
+                    <div *ngIf="ipv4?.errors?.required">IPv4 is required</div>
+                    <div *ngIf="ipv4?.errors?.minlength">IPv4 must be more than 6 characters.</div>
+                    <div *ngIf="ipv4?.errors?.validIP">IPv4 must be a valid IP.</div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-lg btn-success submit-button mt-4" [disabled]="!gatewayForm.valid">Update</button>
+        </form>
+    
+        <div class="row my-5" id="intersection">
+            <h1 class="col-lg-9 col-md-12">Peripheral devices attached to the gateway</h1>
+
+            <div class="col-lg-3 col-md-12" id="add-device">
+                <button type="button" class="btn btn-lg btn-primary" (click)="openModal(content)">Add a Peripheral Device</button>
+            </div>
+        </div>
+
+        <!-- Display modal for add devices to the gateway -->
+        <div id="device-modal">
+            <ng-template #content let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Add Device</h4>
+                  <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="peripheralForm" (ngSubmit)="addPeripheralDevice()">
+                        <div class="form-group">
+                            <label for="uid">UID</label>
+                            <input type="text" id="uid" class="form-control" formControlName="uid">
+                            <div *ngIf="uid?.touched && uid?.invalid" class="alert alert-danger">
+                                <div *ngIf="uid?.errors?.required">UID is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="vendor">Vendor</label>
+                            <input type="text" id="vendor" class="form-control" formControlName="vendor">
+                            <div *ngIf="vendor?.touched && vendor?.invalid" class="alert alert-danger">
+                                <div *ngIf="vendor?.errors?.required">Vendor is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Status</label>                            
+                            <select id="status" class="form-control form-select" formControlName="status">
+                                <option selected>select status</option>
+                                <option value="online">Online</option>
+                                <option value="offline">Offline</option>
+                            </select>
+                            <div *ngIf="status?.touched && status?.invalid" class="alert alert-danger">
+                                <div *ngIf="status?.errors?.required">status is required</div>
+                            </div>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-lg btn-success submit-button mt-4" [disabled]="!peripheralForm.valid">Add</button>
+                      </form>
+                </div>
+              </ng-template>              
+        </div>
+        
+        <!-- Display list of available devices attached to the gateway -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">UID</th>
+                    <th scope="col">Vendor</th>
+                    <th scope="col">Date Added</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="peripheralLen == 0">
+                    <td colspan="6">
+                        <h1 class="text-center">There is currently no Peripheral device data</h1>
+                    </td>
+                </tr>
+                <tr *ngFor="let peripheralDevice of peripheralDevices; index as i">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ peripheralDevice.UID }}</td>
+                    <td>{{ peripheralDevice.vendor }}</td>
+                    <td>{{ peripheralDevice.dateCreated }}</td>
+                    <td class="badge rounded-pill" [ngClass]="{
+                        'bg-success': peripheralDevice.status == 'online',
+                        'bg-danger': peripheralDevice.status == 'offline'
+                    }">
+                    {{ peripheralDevice.status }}
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" (click)="deletePeripheralDevice(peripheralDevice.UID)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                            </svg>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    
+    </main>
+</div>

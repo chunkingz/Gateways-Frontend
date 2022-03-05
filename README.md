@@ -1,27 +1,56 @@
-# Frontend
+# Gateways Frontend (Musala Soft Fullstack Developer Assessment)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.4.
+This sample project is about managing gateways - master devices that control multiple peripheral devices.
 
-## Development server
+The task is to create a REST service for storing information about these gateways and their associated devices. This information must be stored in the database.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+When storing a gateway, any field marked as “to be validated” must be validated and an error returned if it is invalid. Also, no more that 10 peripheral devices are allowed for a gateway.
 
-## Code scaffolding
+The service must also offer an operation for displaying information about all stored gateways (and their devices) and an operation for displaying details for a single gateway. Finally, it must be possible to add and remove a device from a gateway.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
+<br>
+
+## How to use :bulb:
+
+Clone the repo by typing the command below into your terminal.
+
+```
+git clone https://github.com/chunkingz/Gateways-Frontend.git
+```
+
+```
+cd Gateways-Frontend
+``` 
+
+```
+npm i
+``` 
+
+---
+<br>
+
+## Development server :sparkles:
+
+Run `ng s` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+---
+<br>
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `ng b` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+---
+<br>
 
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+---
+<br>
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+---
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+:bowtie: yours truly

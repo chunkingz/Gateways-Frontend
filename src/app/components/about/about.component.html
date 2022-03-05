@@ -1,0 +1,35 @@
+
+<div class="container">
+    
+    <h1 class="my-5 text-center">About Gateways</h1>
+
+    <section id="about-section">
+        <p id="description">
+            This sample project is managing gateways - master devices that control multiple peripheral devices. <br>
+            The task is to create a REST service (JSON/HTTP) for storing information about these
+            gateways and their associated devices. This information must be stored in the database. <br>
+            When storing a gateway, any field marked as “to be validated” must be validated and an error
+            returned if it is invalid. Also, no more that 10 peripheral devices are allowed for a gateway. <br>
+            The service must also offer an operation for displaying information about all stored gateways (and their devices) and an operation for displaying details for a single gateway. Finally, it must
+            be possible to add and remove a device from a gateway. 
+        </p>
+        <br>
+        <div id="bullet-points">
+            Each gateway has:
+            <ul>
+                <li>a unique serial number (string),</li>
+                <li>human-readable name (string),</li>
+                <li>IPv4 address (to be validated),</li>
+                <li>multiple associated peripheral devices.</li>
+            </ul>
+
+            Each peripheral device has:
+            <ul>
+                <li>a UID (number),</li>
+                <li>vendor (string),</li>
+                <li>date created,</li>
+                <li>status - online/offline.</li>
+            </ul>
+        </div>
+    </section>
+</div>

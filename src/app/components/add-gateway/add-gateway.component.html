@@ -1,0 +1,42 @@
+
+<div class="container mb-5">
+    <main>
+        <h1 class="my-5">Gateway Form</h1>
+
+        <form [formGroup]="gatewayForm">
+            <div class="form-group">
+                <label for="serialNumber">Serial Number</label>
+                <input type="text" id="serialNumber" class="form-control" formControlName="serialNumber">
+                <div *ngIf="serialNumber?.pending">Checking for uniqueness...</div>
+                <div *ngIf="serialNumber?.touched && serialNumber?.invalid" class="alert alert-danger">
+                    <div *ngIf="serialNumber?.errors?.required">Serial Number is required</div>
+                    <div *ngIf="serialNumber?.errors?.uniqueSerialNumber">Serial Number must be unique.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="deviceName">Device Name</label>
+                <input type="text" id="deviceName" class="form-control" formControlName="deviceName">
+                <div *ngIf="deviceName?.touched && deviceName?.invalid" class="alert alert-danger">
+                    Device Name is required
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ipv4">IPv4</label>
+                <input type="text" id="ipv4" class="form-control" formControlName="ipv4">
+                <div *ngIf="ipv4?.touched && ipv4?.invalid" class="alert alert-danger">
+                    <div *ngIf="ipv4?.errors?.required">IPv4 is required</div>
+                    <div *ngIf="ipv4?.errors?.minlength">IPv4 must be more than 6 characters.</div>
+                    <div *ngIf="ipv4?.errors?.validIP">IPv4 must be a valid IP.</div>
+                </div>
+            </div>
+          </form>
+    
+        <h1 class="my-5">Add peripheral devices to the gateway</h1>
+    
+        <form [formGroup]="peripheralForm" (ngSubmit)="submit()">
+            <formly-form [model]="model" [fields]="fields" [options]="options" [form]="peripheralForm"></formly-form>
+            <button type="submit" class="btn btn-lg btn-success submit-button" [disabled]="!peripheralForm.valid || !gatewayForm.valid">Submit</button>
+        </form>
+    
+    </main>
+</div>
