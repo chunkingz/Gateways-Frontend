@@ -27,7 +27,7 @@ For this project I used the MEAN stack:
 ---
 <br>
 
-# Urls (Live Hosting) :whale:
+# Urls (Live Hosting) :link:
 
 :gem: This app is hosted on Heroku [here](https://musala-gateways.herokuapp.com/)
 
@@ -40,7 +40,20 @@ For this project I used the MEAN stack:
 ---
 <br>
 
-## How to use :bulb:
+# Docker :whale:
+
+You may install and test out this project using docker via the command.
+
+```
+docker run -dp 5000:5000 chunkingz/gateways
+```
+
+If you do not have docker installed locally, you can also test it out on [Play with Docker](https://labs.play-with-docker.com/)
+
+---
+<br>
+
+## How to install and test locally :bulb:
 
 Run the following commands in a *split* terminal.
 
